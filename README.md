@@ -3,12 +3,11 @@
 ###  [CBAM: Convolutional Block Attention Module](https://github.com/laugh12321/3D-Attention-Keras/blob/main/model/CBAM_attention3D.py)
 
 ```
-Sanghyun Woo, et al. "CBAM: Convolutional Block Attention Module."
-arXiv preprint arXiv:1807.06521v2 (2018).
+Sanghyun Woo, et al. "CBAM: Convolutional Block Attention Module." arXiv preprint arXiv:1807.06521v2 (2018).
 ```
 <div align=center><img alt="" src="https://github.com/laugh12321/3D-Attention-Keras/blob/main/img/CBAM.png"/></div>
 
-<b>code: </b>
+#### Channel Attention Module -3D
 
 ```python
 class channel_attention(tf.keras.layers.Layer):
@@ -55,8 +54,11 @@ class channel_attention(tf.keras.layers.Layer):
         feature = tf.keras.layers.Activation('sigmoid')(feature)
 
         return tf.keras.layers.multiply([inputs, feature])
+```
 
+#### Spatial Attention Module -3D
 
+```python
 class spatial_attention(tf.keras.layers.Layer):
     """ spatial attention module 
         
@@ -96,7 +98,7 @@ Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition. 2
 
 <div align=center><img alt="" src="https://github.com/laugh12321/3D-Attention-Keras/blob/main/img/PA.png"/></div>
 
-<b>code: </b>
+#### Channel Attention -3D
 
 ```python
 class Channel_attention(tf.keras.layers.Layer):
@@ -142,8 +144,11 @@ class Channel_attention(tf.keras.layers.Layer):
         outputs = self.gamma * outputs + inputs
 
         return outputs
+```
 
+#### Position Attention -3D
 
+```python
 class Position_attention(tf.keras.layers.Layer):
     """ 
     Position attention module 
