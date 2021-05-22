@@ -23,10 +23,19 @@ class Channel_attention(tf.keras.layers.Layer):
                  gamma_regularizer=None,
                  gamma_constraint=None,
                  **kwargs):
-        super(Channel_attention, self).__init__(**kwargs)
         self.gamma_initializer = gamma_initializer
         self.gamma_regularizer = gamma_regularizer
         self.gamma_constraint = gamma_constraint
+        super(Channel_attention, self).__init__(**kwargs)
+    
+    def get_config(self):
+        config = super(Channel_attention, self).get_config().copy()
+        config.update({
+            'gamma_initializer': self.gamma_initializer,
+            'gamma_regularizer': self.gamma_regularizer,
+            'gamma_constraint': self.gamma_constraint
+        })
+        return config
 
     def build(self, input_shape):
         self.gamma = self.add_weight(shape=(1,),
@@ -69,11 +78,21 @@ class Position_attention(tf.keras.layers.Layer):
                  gamma_regularizer=None,
                  gamma_constraint=None,
                  **kwargs):
-        super(Position_attention, self).__init__(**kwargs)
         self.ratio = ratio
         self.gamma_initializer = gamma_initializer
         self.gamma_regularizer = gamma_regularizer
         self.gamma_constraint = gamma_constraint
+        super(Position_attention, self).__init__(**kwargs)
+    
+    def get_config(self):
+        config = super(Position_attention, self).get_config().copy()
+        config.update({
+            'ratio': self.ratio,
+            'gamma_initializer': self.gamma_initializer,
+            'gamma_regularizer': self.gamma_regularizer,
+            'gamma_constraint': self.gamma_constraint
+        })
+        return config
 
     def build(self, input_shape):
         super(Position_attention, self).build(input_shape)
